@@ -10,3 +10,6 @@ public class Assignment1 {
     System.out.println("n1.i="+n1.i); 
      }
 }
+
+
+output: n1.i=5 
