@@ -1,0 +1,18 @@
+/******************************************************************
+ * HỌ TÊN: Nguyen Duy Quanggg
+ * MÃ SINH VIÊN: 23010448
+ * MÔN HỌC: Lập trình hướng đối tượng - CSE703029
+ * GIẢNG VIÊN: TS. Nguyễn Lệ Thu
+ * 
+ * BÀI TẬP: Tạo các lớp tín hiệu rời rạc và liên tục, phân tích tín hiệu 
+ * rời rạc sử dụng hệ thống Radar theo đề bài cho trước.
+ * 
+ * MÔ TẢ:
+ * - Tạo interface Signal.
+ * - Xây dựng lớp DiscreteSignal và ContinuousSignal kế thừa từ Signal.
+ * - Lớp Radar phân tích tín hiệu rời rạc dựa trên công thức đã cho.
+ * 
+ * NGÀY TẠO: 10/9/2024
+ * GITHUB REPO: https://github.com/NguyenDuyQuang2005/NguyenDuyQuang2005.git
+ * 
+ ******************************************************************/
