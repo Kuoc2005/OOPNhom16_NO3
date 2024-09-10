@@ -13,11 +13,14 @@ class Radar {
         int n = 4;
         double result = radar.analyzeDiscreteSignal(n);
         System.out.println("Kết quả tín hiệu tại n = " + n + ": " + result);
-        
         // Tính toán tín hiệu rời rạc cho các giá trị khác
-        DiscreteSignal discreteSignal = new DiscreteSignal(5.0, 1000.0);
+        DiscreteSignal discreteSignal = new DiscreteSignal(5.0, 1000.0,result,result);
         int[] x = {1, 2, 3, 4};  // Ví dụ dãy tín hiệu
         double discreteResult = discreteSignal.calculateDiscreteSignal(x, n);
         System.out.println("Kết quả tín hiệu rời rạc với n = " + n + ": " + discreteResult);
     }
+
+	public void outputSignal(int i) {
+		throw new UnsupportedOperationException("Unimplemented method 'outputSignal'");
+	}
 }
