@@ -1,0 +1,15 @@
+ BÀI TẬP: Tạo các lớp tín hiệu rời rạc và liên tục, phân tích tín hiệu rời rạc sử dụng hệ thống Radar theo đề bài cho trước.
+ * MÔ TẢ:
+ * - Tạo interface Signal.
+ * - Xây dựng lớp DiscreteSignal và ContinuousSignal kế thừa từ Signal.
+ * - Lớp Radar phân tích tín hiệu rời rạc dựa trên công thức đã cho.
+ * Giải thích:
+   +)Lớp DiscreteSignal:
+      -Phương thức delta(n, k): Đây là hàm tính giá trị của δ(n - k), với điều kiện là δ(n - k) = 1 khi n = k, ngược lại là 0.
+      -Phương thức calculateDiscreteSignal(n): Thực hiện tính tín hiệu rời rạc x(n) dựa trên công thức [1]: x(n) = Σ x(k) * δ(n - k).
+      -Phương thức printSignal(n): In ra kết quả tín hiệu rời rạc tại vị trí n.
+   +)Lớp Radar:
+      -Phương thức analyzeDiscreteSignal(n): Thực hiện tính toán tín hiệu rời rạc dựa trên công thức [2]: X(n) = 1 - n/15 với 0 ≤ n ≤ 15, ngược lại X(n) = 0.
+      -Trong phương thức main, chương trình sẽ thực hiện tính toán tín hiệu với n = 4 cho cả DiscreteSignal và Radar.
+ * NGÀY TẠO: 10/9/2024
+ * GITHUB REPO:BaiTapGK/NguyenKienQuoc/23010041
