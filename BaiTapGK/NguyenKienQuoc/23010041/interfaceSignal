@@ -1,0 +1,38 @@
+interface Signal {
+    double getAmplitude(); 
+    double getFrequency(); 
+    double getPeriod();    
+    double getWavelength(); 
+}
+class DiscreteSignal implements Signal {
+    private double amplitude;
+    private double frequency;
+    private double period;
+    private double wavelength;
+}
+    public DiscreteSignal(double amplitude, double frequency, double period, double wavelength) {
+        this.amplitude = amplitude;
+        this.frequency = frequency;
+        this.period = period;
+        this.wavelength = wavelength;
+    }   
+class ContinuousSignal implements Signal {
+    private double amplitude;
+    private double frequency;
+    private double period;
+    private double wavelength;
+}
+    public ContinuousSignal(double amplitude, double frequency, double period, double wavelength) {
+        this.amplitude = amplitude;
+        this.frequency = frequency;
+        this.period = period;
+        this.wavelength = wavelength;
+    }
+class Radar {
+    public double analyzeDiscreteSignal(int n) {
+        if (n >= 0 && n <= 15) {
+            return 1 - (double)n / 15;
+        }
+        return 0;
+    }
+...
