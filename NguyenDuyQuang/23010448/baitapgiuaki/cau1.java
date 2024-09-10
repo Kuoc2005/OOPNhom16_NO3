@@ -9,7 +9,7 @@ class DiscreteSignal implements Signal {
     private double amplitude;
     private double frequency;
 
-    public DiscreteSignal(double amplitude, double frequency) {
+    public DiscreteSignal(double amplitude, double frequency, double d, double e) {
         this.amplitude = amplitude;
         this.frequency = frequency;
     }
@@ -22,6 +22,10 @@ class DiscreteSignal implements Signal {
     @Override
     public double getFrequency() {
         return frequency;
+    }
+
+    public double calculateDiscreteSignal(int[] x, int n) {
+        throw new UnsupportedOperationException("Unimplemented method 'calculateDiscreteSignal'");
     }
 
     // Các phương thức khác cho tín hiệu rời rạc
