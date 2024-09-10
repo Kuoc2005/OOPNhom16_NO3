@@ -1,0 +1,17 @@
+class Radar {
+    public double analyzeDiscreteSignal(int n) {
+        if (n >= 0 && n <= 15) {
+            return 1 - (double)n / 15;
+        }
+        return 0;
+    }
+public class Main {
+    public static void main(String[] args) {
+        DiscreteSignal discreteSignal = new DiscreteSignal(5.0, 10.0, 0.02, 150.0);
+        System.out.println("Amplitude:"+ discreteSignal.getAmplitude());
+        System.out.println("Frequency:"+ discreteSignal.getFrequency());
+
+        Radar radar = new Radar();
+        radar.outputSignal(4); 
+    }
+}
