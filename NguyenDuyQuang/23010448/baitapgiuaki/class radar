@@ -1,28 +1,23 @@
-// Tạo lớp Radar để phân tích tín hiệu
 class Radar {
-    // Công thức phân tích tín hiệu rời rạc X(n) = 1 - n/15 với 0 <= n <= 15
+    // Phân tích tín hiệu dựa trên công thức [2]
     public double analyzeDiscreteSignal(int n) {
         if (n >= 0 && n <= 15) {
             return 1 - (n / 15.0);
         } else {
-            return 0; // Nếu n ngoài khoảng [0, 15]
+            return 0;
         }
     }
 
     public static void main(String[] args) {
-        // Tạo đối tượng Radar
         Radar radar = new Radar();
-
-        // Tính và in kết quả tín hiệu với n = 4
         int n = 4;
         double result = radar.analyzeDiscreteSignal(n);
-        System.out.println("Kết quả tín hiệu rời rạc X(n) tại n = " + n + ": " + result);
-
-        // Khởi tạo tín hiệu rời rạc
-        int[] xValues = {1, 2, 3, 4}; // Ví dụ một dãy tín hiệu x(k)
-        DiscreteSignal discreteSignal = new DiscreteSignal(5.0, 1000.0, xValues);
-
-        // In kết quả tín hiệu rời rạc cho n = 4
-        discreteSignal.printSignal(n);
+        System.out.println("Kết quả tín hiệu tại n = " + n + ": " + result);
+        
+        // Tính toán tín hiệu rời rạc cho các giá trị khác
+        DiscreteSignal discreteSignal = new DiscreteSignal(5.0, 1000.0);
+        int[] x = {1, 2, 3, 4};  // Ví dụ dãy tín hiệu
+        double discreteResult = discreteSignal.calculateDiscreteSignal(x, n);
+        System.out.println("Kết quả tín hiệu rời rạc với n = " + n + ": " + discreteResult);
     }
 }
