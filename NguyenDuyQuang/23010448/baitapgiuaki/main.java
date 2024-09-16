@@ -12,3 +12,4 @@ Radar radar = new Radar();
 radar.outputSignal(4); // In ra kết quả cho n = 4
 }
 }
+
