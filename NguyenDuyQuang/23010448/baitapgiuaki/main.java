@@ -1,4 +1,4 @@
-public class  Main {
+public class  main {
 public static void main(String[] args) {
 // Tạo đối tượng DiscreteSignal
 DiscreteSignal discreteSignal = new DiscreteSignal(5.0, 10.0, 0.02, 150.0);
