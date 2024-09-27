@@ -11,5 +11,7 @@ Dự Án Giúp Quản Lý Sinh Viên Khoa Công Nghệ Thông Tin
 
 ### UML 
 #### UML Component Diagram
-![Uploading Ảnh chụp màn hình 2024-09-23 223528.png…]()
+
+![Uploading f581brM - Imgur.jpg…]()
+
 
