@@ -12,9 +12,8 @@ Dự Án Giúp Quản Lý Sinh Viên Khoa Công Nghệ Thông Tin
 ### UML 
 #### UML Component Diagram
 
-![Uploading f581brM - Imgur.jpg…]()
+![f581brM - Imgur](https://github.com/user-attachments/assets/ff842341-5253-4f20-bb6d-1ca1b6142499)
 
-![afmnQd0 - Imgur](https://github.com/user-attachments/assets/a09229e6-8dc5-4e27-92b9-ad722bcfffb9)
 
 
 
