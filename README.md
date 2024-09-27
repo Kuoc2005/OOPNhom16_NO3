@@ -11,4 +11,5 @@ Nguyễn Duy Quang (ngủ thôi)
   (https://github.com/user-attachments/assets/557b4533-6147-408f-a21b-06328f764cf9)
 
 
-<img src="https://imgur.com/afmnQd0">
+![afmnQd0 - Imgur](https://github.com/user-attachments/assets/493da6cd-67af-4607-97d7-deeca059aa25)
+
