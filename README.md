@@ -25,6 +25,9 @@ Dự Án Giúp Quản Lý Sinh Viên Khoa Công Nghệ Thông Tin
 
 ### Giao Diện Đầu Tiên Của Dự Án 
 
+![05nIDeR - Imgur](https://github.com/user-attachments/assets/49425d2a-ccfe-4579-a880-c6f37fa0e101)
+
+
 
 
 
