@@ -14,6 +14,19 @@ Dự Án Giúp Quản Lý Sinh Viên Khoa Công Nghệ Thông Tin
 
 ![f581brM - Imgur](https://github.com/user-attachments/assets/ff842341-5253-4f20-bb6d-1ca1b6142499)
 
+#### UML Sequence Diagram
+
+![4lVtAXb - Imgur](https://github.com/user-attachments/assets/cb0602d3-0954-46bd-9ad3-15c45bd22cd0)
+
+
+
+
+
+### Giao Diện Đầu Tiên Của Dự Án 
+
+
+
+
 
 
 
