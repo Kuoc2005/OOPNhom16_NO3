@@ -30,7 +30,10 @@ Dự Án Giúp Quản Lý Sinh Viên Khoa Công Nghệ Thông Tin
 
 ### Giao Diện Đăng Nhập Của Dự Án
 
-![373212308-9e1fc741-c04a-4d60-b4eb-aac3bbb58fc8](https://github.com/user-attachments/assets/3c43910f-1a16-4b35-85f1-ea1c631497cc)
+![373227982-d1f3d71e-0224-4178-908b-101f7b8722cf](https://github.com/user-attachments/assets/0c752d55-588a-4905-a51d-de6719c6af9d)
+
+![373227901-260d0703-44f9-4136-94a1-dbfce5cf4d6d](https://github.com/user-attachments/assets/310d0e37-3070-4dd7-bbae-bdc6ee63a65c)
+
 
 
 
