@@ -1,6 +1,9 @@
 package studentsystem;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class LoginForm extends JFrame {
 
@@ -8,14 +11,8 @@ public class LoginForm extends JFrame {
     private JPasswordField passwordField;
     private final JButton loginButton;
     private final JButton registerButton;
-    private String registeredUsername;
-    private String registeredPassword;
     
-    // Constructor nhận giá trị admin đã đăng ký
-    public LoginForm(String username, String password) {
-        this.registeredUsername = username;
-        this.registeredPassword = password;
-        
+    public LoginForm() {
         // Thiết lập giao diện
         setTitle("Login Form");
         setSize(300, 200);
@@ -51,10 +48,11 @@ public class LoginForm extends JFrame {
         
         // Thêm sự kiện cho nút đăng nhập
         loginButton.addActionListener((ActionEvent e) -> {
-            String username1 = usernameField.getText();
-            String password1 = new String(passwordField.getPassword());
-            // Kiểm tra đăng nhập với admin đã đăng ký
-            if (username1.equals(registeredUsername) && password1.equals(registeredPassword)) {
+            String username = usernameField.getText();
+            String password = new String(passwordField.getPassword());
+            
+            // Kiểm tra đăng nhập bằng cách đọc từ file
+            if (isValidLogin(username, password)) {
                 JOptionPane.showMessageDialog(null, "Login successful!");
                 openStudentManagement(); // Mở giao diện quản lý sinh viên
             } else {
@@ -68,6 +66,21 @@ public class LoginForm extends JFrame {
         });
 
         add(panel);
+    }
+    
+    // Phương thức kiểm tra đăng nhập hợp lệ
+    private boolean isValidLogin(String username, String password) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("src/File/login.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts[0].equals(username) && parts[1].equals(password)) {
+                    return true;
+                }
+            }
+        } catch (IOException e) {
+        }
+        return false;
     }
     
     // Phương thức mở giao diện quản lý sinh viên
