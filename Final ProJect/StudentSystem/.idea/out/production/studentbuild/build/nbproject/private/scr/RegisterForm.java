@@ -1,15 +1,14 @@
 package studentsystem;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class RegisterForm extends JFrame {
 
     private JTextField usernameField;
     private JPasswordField passwordField;
     private final JButton registerButton;
-    private static String adminUsername = null;
-    private static String adminPassword = null;
     
     public RegisterForm() {
         // Thiết lập giao diện
@@ -49,11 +48,14 @@ public class RegisterForm extends JFrame {
             if (username.isEmpty() || password.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Please enter both username and password", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
-                // Lưu thông tin admin
-                adminUsername = username;
-                adminPassword = password;
-                JOptionPane.showMessageDialog(null, "Registration successful!");
-                openLoginForm(); // Mở giao diện đăng nhập sau khi đăng ký thành công
+                // Lưu thông tin admin vào tệp tin login.txt
+                try (FileWriter writer = new FileWriter("src/File/login.txt", true)) { // Mở file và ghi nối
+                    writer.write(username + "," + password + "\n");
+                    JOptionPane.showMessageDialog(null, "Registration successful!");
+                    openLoginForm(); // Mở giao diện đăng nhập sau khi đăng ký thành công
+                } catch (IOException ioException) {
+                    JOptionPane.showMessageDialog(null, "Error saving to file", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
 
@@ -62,17 +64,8 @@ public class RegisterForm extends JFrame {
     
     // Phương thức mở giao diện đăng nhập sau khi đăng ký thành công
     private void openLoginForm() {
-        LoginForm loginForm = new LoginForm(adminUsername, adminPassword);
+        LoginForm loginForm = new LoginForm();
         loginForm.setVisible(true);
         this.dispose(); // Đóng màn hình đăng ký
-    }
-    
-    // Getter cho admin
-    public static String getAdminUsername() {
-        return adminUsername;
-    }
-
-    public static String getAdminPassword() {
-        return adminPassword;
     }
 }
