@@ -5,6 +5,10 @@ Dự Án Giúp Quản Lý Sinh Viên Khoa Công Nghệ Thông Tin
 - Nguyễn Kiến Quốc
 - Nguyễn Duy Quang
 ### Chức Năng Chính 
+-Tạo tài khoản sinh viên
+-Đăng ký,đăng nhập tài khoản sinh viên
+-Thêm,sửa,xóa sinh viên 
+-Nhập điểm 
 
 
 
