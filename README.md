@@ -1,6 +1,6 @@
 #Dự Án Xây Dựng Ứng Dụng Quản Lý Sinh Viên
 ## Giới Thiệu Dự Án
-Dự Án Giúp Quản Lý Sinh Viên Khoa Công Nghệ Thông Tin 
+Dự Án Giúp Quản Lý Học Sinh
 ### Thành Viên 
 - Nguyễn Kiến Quốc
 - Nguyễn Duy Quang
