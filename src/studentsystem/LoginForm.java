@@ -5,11 +5,13 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-class LoginForm extends JFrame {
+public class LoginForm extends JFrame {
 
-    private final JTextField usernameField;
-    private final JPasswordField passwordField;
-
+    private JTextField usernameField;
+    private JPasswordField passwordField;
+    private final JButton loginButton;
+    private final JButton registerButton;
+    
     public LoginForm() {
         // Thiết lập giao diện
         setTitle("Login Form");
@@ -35,17 +37,17 @@ class LoginForm extends JFrame {
         passwordField = new JPasswordField(20);
         passwordField.setBounds(100, 40, 160, 25);
         panel.add(passwordField);
-
-        JButton loginButton = new JButton("Login");
+        
+        loginButton = new JButton("Login");
         loginButton.setBounds(100, 80, 80, 25);
         panel.add(loginButton);
-
-        JButton registerButton = new JButton("Register");
-        registerButton.setBounds(200, 80, 80, 25);
+        
+        registerButton = new JButton("Register");
+        registerButton.setBounds(100, 120, 100, 25);
         panel.add(registerButton);
         
         // Thêm sự kiện cho nút đăng nhập
-        loginButton.addActionListener((ActionEvent _) -> {
+        loginButton.addActionListener((ActionEvent e) -> {
             String username = usernameField.getText();
             String password = new String(passwordField.getPassword());
             
@@ -59,7 +61,7 @@ class LoginForm extends JFrame {
         });
         
         // Thêm sự kiện cho nút đăng ký
-        registerButton.addActionListener((ActionEvent _) -> {
+        registerButton.addActionListener((ActionEvent e) -> {
             openRegisterForm(); // Mở giao diện đăng ký
         });
 
@@ -76,7 +78,7 @@ class LoginForm extends JFrame {
                     return true;
                 }
             }
-        } catch (IOException _) {
+        } catch (IOException e) {
         }
         return false;
     }
