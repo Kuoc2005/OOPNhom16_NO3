@@ -21,14 +21,14 @@ static int check=0;
 JPanel panel;
 
 public SFStudent() {
-initComponents();
-this.jPanel1.setBackground(Color.LIGHT_GRAY);
-this.list.add(new Student("1","Nhập tên",20));
-this.list.add(new Student("2","Nhập tên ",20));
-this.list.add(new Student("3","Nhập tên ",20));
-View();
-ViewTable(this.txtSearchName.getText());
+    initComponents();
+    this.jPanel1.setBackground(Color.LIGHT_GRAY);
+    
+    System.out.println("Danh sách khởi tạo: " + list.size()); // Kiểm tra số lượng phần tử trong danh sách
+    
+    ViewTable("");  // Bảng trống khi khởi động
 }
+
 
 public void View()
 {
@@ -48,30 +48,25 @@ this.btnAdd.show(a);
 this.btnEdit.show(a);
 this.btnDelete.show(a);
 }
-public void ViewTable(String name)
-{
-//Show table
-DefaultTableModel model = (DefaultTableModel) this.tblStudent.getModel();
-model.setNumRows(0);
-int n = 1;
-for (Student x:list)
-{
-if (x.getName().contains(name))
-{
-model.addRow(new Object[]{n++,x.getID(),x.getName(),x.getAge()});
+public void ViewTable(String name) {
+    // Lấy model của bảng
+    DefaultTableModel model = (DefaultTableModel) this.tblStudent.getModel();
+    model.setNumRows(0);  // Xóa hết các dòng hiện tại trong bảng
+
+    // Thêm từng sinh viên từ danh sách vào bảng
+    int n = 1;
+    for (Student x : list) {
+        model.addRow(new Object[]{n++, x.getID(), x.getName(), x.getAge()});
+    }
+
+    // Thiết lập giao diện bảng
+    this.tblStudent.setRowHeight(22);
+    this.tblStudent.getColumnModel().getColumn(0).setWidth(10);
+    this.tblStudent.getColumnModel().getColumn(1).setPreferredWidth(100);
+    this.tblStudent.getColumnModel().getColumn(2).setPreferredWidth(250);
+    this.tblStudent.getColumnModel().getColumn(3).setPreferredWidth(100);
 }
-}
-this.tblStudent.setRowHeight(22);
-this.tblStudent.getColumnModel().getColumn(0).setWidth(10);
-this.tblStudent.getColumnModel().getColumn(1).setPreferredWidth(100);
-this.tblStudent.getColumnModel().getColumn(2).setPreferredWidth(250);
-this.tblStudent.getColumnModel().getColumn(3).setPreferredWidth(100);
-DefaultTableCellRenderer cellRenderer = new DefaultTableCellRenderer();
-cellRenderer.setHorizontalAlignment(JLabel.CENTER);
-tblStudent.getColumnModel().getColumn(0).setCellRenderer(cellRenderer);
-tblStudent.getColumnModel().getColumn(1).setCellRenderer(cellRenderer);
-tblStudent.getColumnModel().getColumn(3).setCellRenderer(cellRenderer);
-}
+
 public Student Search(String s)
 {
 for (Student x:list)
@@ -342,13 +337,39 @@ pack();
 }// </editor-fold>
 
 private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {
-// TODO add your handling code here:
-this.txtID.setText("");
-this.txtName.setText("");
-this.txtAge.setText("");
-OnOff(false, true);
-check = 1;
+    // Lấy dữ liệu từ các trường nhập liệu
+    String id = txtID.getText();
+    String name = txtName.getText();
+    int age;
+
+    try {
+        age = Integer.parseInt(txtAge.getText());  // Chuyển đổi tuổi sang kiểu số
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Tuổi phải là số nguyên hợp lệ!");
+        return;
+    }
+
+    // Kiểm tra nếu các trường nhập liệu không trống
+    if (id.isEmpty() || name.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ ID và tên!");
+        return;
+    }
+
+    // Tạo một đối tượng Student mới
+    Student newStudent = new Student(id, name, age);
+
+    // Thêm sinh viên vào danh sách
+    list.add(newStudent);
+
+    // Cập nhật bảng với dữ liệu mới
+    ViewTable("");  // Cập nhật để hiển thị sinh viên vừa thêm
+
+    // Xóa các trường nhập liệu sau khi thêm
+    txtID.setText("");
+    txtName.setText("");
+    txtAge.setText("");
 }
+
 
 private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {
 // TODO add your handling code here:
