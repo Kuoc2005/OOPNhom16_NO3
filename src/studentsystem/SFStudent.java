@@ -66,6 +66,16 @@ public void ViewTable(String name) {
     this.tblStudent.getColumnModel().getColumn(2).setPreferredWidth(250);
     this.tblStudent.getColumnModel().getColumn(3).setPreferredWidth(100);
 }
+public List<Student> SearchByName(String name) {
+    List<Student> matchingStudents = new ArrayList<>();
+    for (Student student : list) {
+        if (student.getName().equalsIgnoreCase(name)) {
+            matchingStudents.add(student);  // Thêm sinh viên vào danh sách nếu tên trùng
+        }
+    }
+    return matchingStudents;
+}
+
 
 public Student Search(String s)
 {
@@ -452,8 +462,35 @@ View();
 }
 
 private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {
-// TODO add your handling code here:
-ViewTable(this.txtSearchName.getText());
+
+// Xử lý sự kiện khi người dùng nhấn nút tìm kiếm theo tên
+btnSearch.addActionListener(new java.awt.event.ActionListener() {
+    public void actionPerformed(java.awt.event.ActionEvent evt) {
+        String name = txtSearchName.getText().trim();  // Lấy tên từ ô nhập liệu
+
+        // Gọi hàm tìm kiếm theo tên và trả về danh sách các sinh viên có tên trùng nhau
+        List<Student> results = SearchByName(name);
+
+        // Cập nhật bảng hiển thị kết quả tìm kiếm
+        DefaultTableModel model = (DefaultTableModel) tblStudent.getModel();
+        model.setRowCount(0);  // Xóa tất cả các hàng hiện tại trong bảng
+
+        // Kiểm tra kết quả tìm kiếm
+        if (results != null && !results.isEmpty()) {
+            // Thêm tất cả sinh viên tìm thấy vào bảng
+            for (int i = 0; i < results.size(); i++) {
+                Student student = results.get(i);
+                model.addRow(new Object[]{i + 1, student.getID(), student.getName(), student.getAge()});
+            }
+        } else {
+            // Nếu không tìm thấy sinh viên nào, hiển thị thông báo
+            JOptionPane.showMessageDialog(null, "Không tìm thấy sinh viên có tên: " + name);
+        }
+    }
+});
+
+
+   
 }
 
 private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {
