@@ -462,27 +462,35 @@ private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {
     ViewTable("");  // Cập nhật bảng sau khi lưu
 }
 private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {
+    btnCancel.addActionListener(new java.awt.event.ActionListener() {
+    @Override
+    public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnCancelActionPerformed(evt);
+    }
+});
+
     System.out.println("Nút Hủy bỏ đã được nhấn."); // Debugging
+    
     // Đặt lại các trường nhập liệu
-    txtID.setText("");     // Xóa nội dung ô nhập ID
-    txtName.setText("");   // Xóa nội dung ô nhập tên
-    txtAge.setText("");    // Xóa nội dung ô nhập tuổi
+    txtID.setText("");     
+    txtName.setText("");   
+    txtAge.setText("");    
 
-    // Đặt lại vị trí về -1 để không có sinh viên nào được chọn
-    pos = -1;
-
-    // Chuyển về giao diện chính
-    showMainInterface();  // Gọi phương thức để hiển thị giao diện chính
+    // Chuyển về giao diện chính (đảm bảo giao diện chính đã khởi tạo đúng)
+    showMainInterface();
 }
 
-// Phương thức hiển thị giao diện chính
+
 private void showMainInterface() {
     System.out.println("Hiển thị giao diện chính."); // Debugging
-    this.setVisible(false);  // Ẩn giao diện hiện tại
-    MainFrame mainFrame = new MainFrame();  // Tạo một đối tượng giao diện chính
+
+    // Ẩn giao diện hiện tại
+    this.setVisible(false);
+
+    // Kiểm tra khởi tạo MainFrame đúng cách
+    MainFrame mainFrame = new MainFrame();  
     mainFrame.setVisible(true);  // Hiện giao diện chính
 }
-
 
 
 private void tblStudentMouseClicked(java.awt.event.MouseEvent evt) {
