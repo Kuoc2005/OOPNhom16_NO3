@@ -29,7 +29,6 @@ public SFStudent() {
     ViewTable("");  // Bảng trống khi khởi động
 }
 
-
 public void View()
 {
 x = list.get(pos);
@@ -66,6 +65,7 @@ public void ViewTable(String name) {
     this.tblStudent.getColumnModel().getColumn(2).setPreferredWidth(250);
     this.tblStudent.getColumnModel().getColumn(3).setPreferredWidth(100);
 }
+
 public List<Student> SearchByName(String name) {
     List<Student> matchingStudents = new ArrayList<>();
     for (Student student : list) {
@@ -361,7 +361,7 @@ private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {
 
     // Kiểm tra nếu các trường nhập liệu không trống
     if (id.isEmpty() || name.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ ID và tên!");
+        JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ mã sinh viên và tên!");
         return;
     }
 
@@ -388,39 +388,102 @@ OnOff(false, true);
 }
 
 private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {
-// TODO add your handling code here:
-UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Arial", Font.BOLD, 20)));
-int n = JOptionPane.showConfirmDialog(panel,"Are you sure you want to remove?","Alert",JOptionPane.YES_NO_OPTION);
-if(n == JOptionPane.YES_OPTION)
-{
-list.remove(pos);
-if (pos > list.size()-1)
-pos = pos -1;
-if (pos <0)
-pos = 0;
-View();
-ViewTable(this.txtSearchName.getText());
-}
+    UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Arial", Font.BOLD, 20)));
+    
+    Object[] options = {"Xóa một sinh viên", "Xóa tất cả sinh viên", "Hủy"};
+    int choice = JOptionPane.showOptionDialog(panel, 
+                    "Bạn muốn xóa một sinh viên hay tất cả sinh viên?", 
+                    "Xóa sinh viên", 
+                    JOptionPane.YES_NO_CANCEL_OPTION, 
+                    JOptionPane.QUESTION_MESSAGE, 
+                    null, options, options[0]);
 
+    if (choice == 0) {  // Xóa một sinh viên
+        int n = JOptionPane.showConfirmDialog(panel, "Bạn có chắc chắn muốn xóa sinh viên này không?", "Cảnh báo", JOptionPane.YES_NO_OPTION);
+        
+        if (n == JOptionPane.YES_OPTION) {
+            list.remove(pos);
+            pos = Math.max(0, Math.min(pos, list.size() - 1)); // Cập nhật pos
+            View();
+            ViewTable(this.txtSearchName.getText());
+        }
+    } else if (choice == 1) {  // Xóa tất cả sinh viên
+        int n = JOptionPane.showConfirmDialog(panel, "Bạn có chắc chắn muốn xóa tất cả sinh viên không?", "Cảnh báo", JOptionPane.YES_NO_OPTION);
+        
+        if (n == JOptionPane.YES_OPTION) {
+            list.clear();
+            pos = 0;
+            ViewTable("");  // Làm sạch bảng
+            JOptionPane.showMessageDialog(panel, "Tất cả sinh viên đã bị xóa.");
+        }
+    }
 }
 
 private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {
-// TODO add your handling code here:
-String ID = this.txtID.getText();
-String name = this.txtName.getText();
-int age = Integer.parseInt(this.txtAge.getText());
-if (check == 1)
-this.list.add(new Student(ID,name,age));
-else
-this.list.set(pos, new Student(ID,name,age));
-View();
-ViewTable(this.txtSearchName.getText());
+    // Lấy thông tin từ các ô nhập liệu
+    String id = txtID.getText().trim();
+    String name = txtName.getText().trim();
+    String ageStr = txtAge.getText().trim();
+    
+    // Kiểm tra thông tin đầu vào
+    if (id.isEmpty() || name.isEmpty() || ageStr.isEmpty()) {
+        JOptionPane.showMessageDialog(panel, "Vui lòng nhập đầy đủ thông tin sinh viên.");
+        return;
+    }
+    
+    int age;
+    try {
+        age = Integer.parseInt(ageStr);
+        if (age < 0) {
+            JOptionPane.showMessageDialog(panel, "Tuổi không thể âm.");
+            return;
+        }
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(panel, "Vui lòng nhập tuổi hợp lệ.");
+        return;
+    }
+    
+    // Tạo đối tượng Student mới
+    Student student = new Student(id, name, age);
+    
+    // Thêm hoặc cập nhật sinh viên trong danh sách
+    if (pos >= 0 && pos < list.size()) {
+        // Cập nhật sinh viên nếu pos hợp lệ
+        list.set(pos, student);
+        JOptionPane.showMessageDialog(panel, "Thông tin sinh viên đã được cập nhật.");
+    } else {
+        // Thêm sinh viên mới vào danh sách
+        list.add(student);
+        JOptionPane.showMessageDialog(panel, "Sinh viên đã được thêm vào danh sách.");
+    }
+
+    // Cập nhật bảng hiển thị
+    View();
+    ViewTable("");  // Cập nhật bảng sau khi lưu
+}
+private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {
+    System.out.println("Nút Hủy bỏ đã được nhấn."); // Debugging
+    // Đặt lại các trường nhập liệu
+    txtID.setText("");     // Xóa nội dung ô nhập ID
+    txtName.setText("");   // Xóa nội dung ô nhập tên
+    txtAge.setText("");    // Xóa nội dung ô nhập tuổi
+
+    // Đặt lại vị trí về -1 để không có sinh viên nào được chọn
+    pos = -1;
+
+    // Chuyển về giao diện chính
+    showMainInterface();  // Gọi phương thức để hiển thị giao diện chính
 }
 
-private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {
-// TODO add your handling code here:
-View();
+// Phương thức hiển thị giao diện chính
+private void showMainInterface() {
+    System.out.println("Hiển thị giao diện chính."); // Debugging
+    this.setVisible(false);  // Ẩn giao diện hiện tại
+    MainFrame mainFrame = new MainFrame();  // Tạo một đối tượng giao diện chính
+    mainFrame.setVisible(true);  // Hiện giao diện chính
 }
+
+
 
 private void tblStudentMouseClicked(java.awt.event.MouseEvent evt) {
 // TODO add your handling code here:
@@ -554,6 +617,7 @@ private javax.swing.JTextField txtAge;
 private javax.swing.JTextField txtID;
 private javax.swing.JTextField txtName;
 private javax.swing.JTextField txtSearchName;
+
 // End of variables declaration
 
 public List<Student> getList() {
