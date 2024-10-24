@@ -39,6 +39,9 @@ Dự Án Giúp Quản Lý Học Sinh
 ![373227901-260d0703-44f9-4136-94a1-dbfce5cf4d6d](https://github.com/user-attachments/assets/310d0e37-3070-4dd7-bbae-bdc6ee63a65c)
 
 
+###Link Youtube Bài thuyết trình 
+https://www.youtube.com/watch?v=isimDd60Yb4
+
 
 
 
